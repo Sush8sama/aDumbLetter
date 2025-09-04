@@ -1,0 +1,12 @@
+
+
+body {
+  margin: 0;
+}
+
+
+#canvas-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(230, 236, 195);
+}
