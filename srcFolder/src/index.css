@@ -6,7 +6,84 @@ body {
 
 
 #canvas-container {
+  user-select: none;
   width: 100vw;
   height: 100vh;
-  background-color: rgb(230, 236, 195);
+  background-color: rgb(233, 236, 195);
+  position: relative;
 }
+
+.button-container {
+  user-select: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+
+  pointer-events: none;
+  
+}
+
+.image-button, .right-button, .left-button {
+  /* This allows buttons inside the container to be clickable again */
+  pointer-events: auto;
+}
+
+.image-button {
+  user-select: none;
+
+  -webkit-user-drag: none; 
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  width:100px;
+  height: auto;
+  cursor:pointer;
+  transition: transform 0.2s ease-in-out;
+}
+.image-button:hover {
+  transform: translateX(-50%) scale(1.1);
+} 
+
+.image-button:active {
+  transform: translateX(-50%) scale(0.95);
+  transition: transform 0.1s ease-in-out  
+  }
+
+.right-button {
+  user-select: none;
+  -webkit-user-drag: none;
+  position: absolute;
+  top: 90%;
+  right: 40%;
+  z-index: 100;
+  width: 40px;
+  height:auto;
+  cursor:pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.left-button {
+  user-select: none;
+  -webkit-user-drag: none;
+  position: absolute;
+  top: 90%;
+  left: 40%;
+  z-index: 100;
+  width: 40px;
+  height:auto;
+  cursor:pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.right-button:hover, .left-button:hover {
+  transform: scale(1.1);
+}
+.right-button:active, .left-button:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease-in-out;
+  }

@@ -1,5 +1,5 @@
 import {Canvas, useFrame, useLoader} from '@react-three/fiber';
-import { useRef, Suspense, useMemo } from 'react';
+import { useRef, Suspense, useMemo, useState, useEffect } from 'react';
 import { BoxGeometry, TextureLoader } from 'three';
 import { RoundedBoxGeometry,RoundedBox, useTexture, Float } from '@react-three/drei';
 import React from 'react';
@@ -7,16 +7,43 @@ import * as THREE from 'three';
 import { useSpring, animated } from '@react-spring/three';
 import { useDrag } from '@use-gesture/react';
 
-function AnimatedEnvelope() {
+function AnimatedEnvelope({isOpen, currentPage}) {
 const envelopeRef = useRef();
 const flapRef = useRef();
-const [frontTexture, backTexture, flapfront] = useTexture(['/FrontLetterWO.png', '/BackLetter.png', 'FrontFlapOut.png']);
+const [frontTexture, backTexture, flapfront] = useTexture([
+  '/FrontLetterWO.png', 
+  '/BackLetter.png', 
+  'FrontFlapOut.png', 
+  ]);
+const letterTextures = useTexture([
+  '/Letter1.png',
+  '/Letter2.png',
+  ]);
 
-const [spring, api] = useSpring(() => ({
+
+
+const {rotation: flapRotation} = useSpring({
+  rotation: isOpen ?[ -Math.PI ,0, 0]: [-0.035, 0, 0],
+  config: {friction:200, mass: 1, tension:500, clamp: false},
+});
+
+const [dragSpring, api] = useSpring(() => ({
     rotation: [0, 0, 0],
-    config: { friction: 40, mass: 1, tension: 800 },
+    config: { friction: 200, mass: 15, tension: 1000 },
   }));
-const bind = useDrag(({ active, movement: [mx, my], down, memo = spring.rotation.get() }) => {
+
+
+// Fixes issues that for some reason my letters keep looking washed out
+// This ensures the textures are in sRGB color space
+useMemo(() => {
+    letterTextures.forEach(texture => {
+      texture.colorSpace = THREE.SRGBColorSpace;
+      texture.needsUpdate = true;
+    });
+  }, [letterTextures]);
+
+
+const bind = useDrag(({ active, movement: [mx, my], down, memo = dragSpring.rotation.get() }) => {
     // `active` is true when dragging, `down` is true when mouse is pressed
     // `movement` is the displacement from where the drag started
     // `memo` is a value that persists between drag events, we initialize it with the current rotation
@@ -40,7 +67,12 @@ const materials = [
 const envelopeWidth = 4.5;
 const envelopeHeight = 3;
 const envelopeDepth = 0.01;
-
+const {position: letterPosition, opacity: letterOpacity} = useSpring({
+  position: isOpen ? [0, 1, 1] : [0, 0, 0.005],
+  opacity: isOpen ? 1 : 0,
+  delay: isOpen ? 200 : 0,
+  config: { friction: 10, mass: 1, tension: 50 },
+});
 const flapHeight = 1.5;
 
 
@@ -74,34 +106,96 @@ const flapGeometry = useMemo(() => {
 
 
   return (
-    <animated.group {...bind()} {...spring}>
+  
+    <animated.group {...bind()} {...dragSpring}>
       <mesh material={materials} >
       <boxGeometry
       args={[envelopeWidth, envelopeHeight, envelopeDepth]}
       />
     </mesh>
 
+    <animated.group
+    
+    position={[0, envelopeHeight / 2, envelopeDepth / 2 + 0.005]} // Position at the top edge of the envelope
+    rotation = {flapRotation }
+    >
     <mesh
       // ref={flapRef}
       geometry={flapGeometry}
-      position={[0, envelopeHeight / 2, envelopeDepth / 2 + 0.002]} // Slightly in front of the envelope
+      position={[0, 0, 0.005]} // Slightly in front of the envelope
       >
-      <meshStandardMaterial map={flapfront} side={THREE.DoubleSide} />
+      <meshStandardMaterial map={flapfront} side={THREE.DoubleSide} 
+      />
       </mesh>
+      </animated.group>
+
+      <animated.mesh position={letterPosition}>
+        <planeGeometry args={[envelopeWidth * 0.9, envelopeHeight * 0.9]} />
+        <animated.meshStandardMaterial map={letterTextures[currentPage]} transparent={true} opacity={letterOpacity} />
+      </animated.mesh>
     </animated.group>
+    
+  
   )
 }
 
 
 function App() {
 
+  const pageCount = 2; 
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const handleNextPage = () => {
+        if (!isOpen) return; // Prevent page turn if envelope is closed
+        
+        else {
+        setCurrentPage(prevPage => Math.min(prevPage + 1, pageCount - 1));
+        };
+      
+    };
+
+  const handlePrevPage = () => {
+        if (!isOpen) return; // Prevent page turn if envelope is closed
+        else {
+        setCurrentPage(prevPage => Math.max(prevPage - 1, 0));
+        };
+      
+    };
+
+
+
   return (
     <div id="canvas-container">
-      <Canvas>
+      
+        <div className="button-container">
+                <img
+                src={isOpen ? "/Close.png" : "/Open.png"}
+                onClick={() => setIsOpen(!isOpen)}
+                className='image-button'
+                alt="Open/Close Envelope"
+                />
+
+               
+                  <img
+                  src="Right.png"
+                  onClick={handleNextPage}
+                  className='right-button'
+                  alt="Next Page"
+                  />
+                  <img
+                  src="Left.png"
+                  onClick={handlePrevPage}
+                  className='left-button'
+                  alt="Prev Page"
+                  />
+              
+    </div>
+    <Canvas >
         <Suspense fallback={null}>
         <ambientLight intensity={0.7} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
-        <AnimatedEnvelope />
+        <AnimatedEnvelope isOpen={isOpen} currentPage={currentPage}/>
         </Suspense>
       </Canvas>
     </div>
