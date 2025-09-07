@@ -129,11 +129,11 @@ body {
   user-select: none;
   -webkit-user-drag: none;
   height: 700px;
-  width: 400px;
+  width: 450px;
   position: fixed;
   z-index: 100;
   top: 7%;
-  right: -400px; /* Initially hidden off-screen to the right */
+  right: -450px; /* Initially hidden off-screen to the right */
   background-color: #66252500;
   
   transition: 0.5s; /* The duration of the slide animation */
@@ -202,6 +202,7 @@ body {
   border: none;
 }
 
+
 .sidetab-content {
   font-family: 'PixelFont5', monospace;
   user-select: none;
@@ -234,4 +235,13 @@ body {
   width: auto;
   cursor: pointer;
   z-index: 101; /* Ensure it's above other elements */
+}
+
+.log-button:hover {
+  transform: translate(-100%, -50%) scale(1.05);
+}
+
+.log-button:active {
+  transform: translate(-100%, -50%) scale(0.95);
+  transition: transform 0.1s ease-in-out;
 }

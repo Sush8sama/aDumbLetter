@@ -2,7 +2,9 @@
 ###########################
 @ 18:59 Sep 5th 2025
 
-I decided to keep some notes/logs as I make this dumb letter thing. This is day 2 of working on this little project. So for context this idea came from a friend that likes to write letters for peoples birthdays or for people in general. She wrote me a letter for my birthday and so I wanted to write one too for theirs. However we live in different countries sooo doing so was not very evident. At the same time, I am making my own portofolio website with pixel art. With this in mind, during one of my running seshes I suddenly came up with the idea to create a digital envelope hosting website and of course with the pixel art theme. My vision is to have a website that allows users to customize their own pixel art envelopes and put letters in them. A unique link would then represent their letter, which then can be send over the internet. For now, I am creating a single webpage, hosting a single letter, but yeah I HAVE THE VISION. dunno if this already exists LOL, but ye dont care either. Currently things are going smoothly, created a moving envelope that can be opened and a single letter appears. Can also be closed. Everything works YAY. Now gonna implement multiple pages in an envelope :DDD. BYE.
+I decided to keep some notes/logs as I make this dumb letter thing. This is day 2 of working on this little project. So for context this idea came from a friend that likes to write letters for people. She wrote me a letter for my birthday and so I wanted to write one for theirs. However, we live in different countries sooo doing so was not very evident. At the same time, I am making my own portofolio website with pixel art. With this in mind, during one of my running seshes I suddenly came up with the idea to create a digital envelope hosting website and of course with the pixel art theme. My VISION is to have a website that allows users to customize their own pixel art envelopes and put letters in them. A unique link would then represent their letter, which then can be send over the internet. Dunno if this already exists LOL (probs). For now, created a 3D envelope that can be opened and a single letter appears. Can also be closed. Now gonna implement multiple pages in an envelope :DDD. BYE.
+
+P.S. Developed in React with three.js/three-fiber 嗯嗯~
 
 ############################
 
@@ -27,5 +29,11 @@ Now I gotta draw the logs sprite. TF DO I DRAWWW
 @ 19:15 Sep 7th 2025
 
 Logs function is fully implemented. Not verry happy with the logs sprite and the font is also lowkey weird. Gonna change the font and might redraw the sprite later...
+
+############################
+
+@ 19:51 Sep 7th 2025
+
+Tweeked the font and sprite. Good enough. Next is to program the letter writing function. Currently it is still very manual. This means adding back end stuff ayayaya. Worries for tomorrow perhaps.
 
 ############################
