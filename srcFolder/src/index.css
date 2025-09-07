@@ -1,4 +1,41 @@
 
+@font-face {
+  font-family: "PixelFont1";
+  src: url('/Fonts/VCR_OSD_MONO_1.001.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "PixelFont2";
+  src: url('/Fonts/aurora-24.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "PixelFont3";
+  src: url('/Fonts/dogica.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "PixelFont4";
+  src: url('/Fonts/Pixeled.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "PixelFont5";
+  src: url('/Fonts/PixelOperator.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "PixelFont6";
+  src: url('/Fonts/upheavtt.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 body {
   margin: 0;
@@ -26,7 +63,7 @@ body {
   
 }
 
-.image-button, .right-button, .left-button {
+.image-button, .right-button, .left-button, .close-btn, .open-btn {
   /* This allows buttons inside the container to be clickable again */
   pointer-events: auto;
 }
@@ -87,3 +124,114 @@ body {
   transform: scale(0.95);
   transition: transform 0.1s ease-in-out;
   }
+
+.sidetab {
+  user-select: none;
+  -webkit-user-drag: none;
+  height: 700px;
+  width: 400px;
+  position: fixed;
+  z-index: 100;
+  top: 7%;
+  right: -400px; /* Initially hidden off-screen to the right */
+  background-color: #66252500;
+  
+  transition: 0.5s; /* The duration of the slide animation */
+  padding-top: 60px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.sidetab-header{
+  user-select: none;
+  -webkit-user-drag: none;
+  height: 40px; /* The exact space we need for the button */
+  flex-shrink: 0; /* Prevents this header from shrinking */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Pushes the button to the right */
+  padding-right: 10px; /* Space from the edge */
+}
+.sidetab-footer{
+  user-select: none;
+  -webkit-user-drag: none;
+  height: 40px; /* The exact space we need for the button */
+  flex-shrink: 0; /* Prevents this header from shrinking */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Pushes the button to the right */
+  padding-right: 10px; /* Space from the edge */
+}
+
+.sidetab.open {
+  right: 0; /* Slides into view */
+}
+
+.sidetab .close-btn {
+  
+
+  font-size: 36px;
+  background: none; /* Make background transparent */
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0 15px;
+}
+.logs-background {
+  user-select: none;
+  -webkit-user-drag: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+   /* Ensures the image covers the entire div */
+  z-index: -1;
+  opacity: 1;/* Adjusts the transparency of the background image */
+}
+
+.open-btn {
+  user-select: none;
+  -webkit-user-drag: none;
+  font-size: 30px;
+  cursor: pointer;
+  background-color: #5a5454;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.sidetab-content {
+  font-family: 'PixelFont5', monospace;
+  user-select: none;
+  -webkit-user-drag: none;
+  flex-grow: 1; /* This is the key! It makes the content fill the remaining space */
+  height: 0; /* Required for flex-grow to work properly in some scenarios */
+  padding: 0 20px 20px 20px; 
+  box-sizing: border-box;
+  color:#d8dac8;
+  white-space: pre-wrap;
+  font-size: 22px;       /* Adjust the size */
+  line-height: 1.6;      /* Adjust spacing between lines for better readability */
+  text-align: left; 
+  
+}
+
+.simplebar-content-wrapper{
+  padding-top: 20px !important;
+}
+
+.log-button{
+  
+  user-select: none;
+  -webkit-user-drag: none;
+  position: absolute;
+  top: 50%; /* Center vertically minus half the button height */
+  left: 0;
+  height: 60px;
+  transform: translate(-100%, -50%);
+  width: auto;
+  cursor: pointer;
+  z-index: 101; /* Ensure it's above other elements */
+}

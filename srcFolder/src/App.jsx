@@ -6,6 +6,9 @@ import React from 'react';
 import * as THREE from 'three';
 import { useSpring, animated } from '@react-spring/three';
 import { useDrag } from '@use-gesture/react';
+import { createPortal } from 'react-dom';
+import SimpleBar from 'simplebar-react';
+import 'simplebar-react/dist/simplebar.min.css'; 
 
 function AnimatedEnvelope({isOpen, currentPage}) {
 const envelopeRef = useRef();
@@ -140,11 +143,27 @@ const flapGeometry = useMemo(() => {
 }
 
 
+
+
+
+
+
+
 function App() {
 
   const pageCount = 2; 
   const [isOpen, setIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
+  const [unfolded, setUnfolded] = useState(false);
+  const[textContent, setTextContent] = useState("");
+  
+  useEffect(() => {
+    fetch('/Progress logs.txt')
+      .then(response => response.text())
+      .then(text => setTextContent(text))  
+      .catch(error => console.error('Error fetching text file:', error));
+  }, []);
+
 
   const handleNextPage = () => {
         if (!isOpen) return; // Prevent page turn if envelope is closed
@@ -163,9 +182,16 @@ function App() {
       
     };
 
+  const toggleSidetab = () => {
+    setUnfolded(!unfolded);
+  }
+
+    
+
 
 
   return (
+  <>
     <div id="canvas-container">
       
         <div className="button-container">
@@ -175,8 +201,6 @@ function App() {
                 className='image-button'
                 alt="Open/Close Envelope"
                 />
-
-               
                   <img
                   src="Right.png"
                   onClick={handleNextPage}
@@ -189,16 +213,44 @@ function App() {
                   className='left-button'
                   alt="Prev Page"
                   />
+                  
               
     </div>
+    
     <Canvas >
         <Suspense fallback={null}>
         <ambientLight intensity={0.7} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
+        
         <AnimatedEnvelope isOpen={isOpen} currentPage={currentPage}/>
         </Suspense>
       </Canvas>
+    
     </div>
+    
+    <div className={`sidetab ${unfolded ? 'open' : ''}`}>
+
+        <img
+        src="logButton.png"
+        onClick={toggleSidetab}
+        className='log-button'
+        />
+        <img 
+        src="/Logs.png" 
+        className="logs-background" />
+
+        <div className="sidetab-header">  {/* Added a header and footer to manage the scroll window size XD */}
+          </div>
+        <SimpleBar className="sidetab-content">
+          <p>
+            {textContent}
+          </p>
+        </SimpleBar>
+        <div className="sidetab-footer">
+          </div>
+      </div>
+      </>
+    
   );
 }
 
