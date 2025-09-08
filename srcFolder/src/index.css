@@ -46,7 +46,7 @@ body {
   user-select: none;
   width: 100vw;
   height: 100vh;
-  background-color: rgb(233, 236, 195);
+  background-color: rgb(43, 37, 66);
   position: relative;
 }
 
@@ -95,10 +95,10 @@ body {
   user-select: none;
   -webkit-user-drag: none;
   position: absolute;
-  top: 90%;
+  top: 89.5%;
   right: 40%;
   z-index: 100;
-  width: 40px;
+  width: 27px;
   height:auto;
   cursor:pointer;
   transition: transform 0.2s ease-in-out;
@@ -108,10 +108,10 @@ body {
   user-select: none;
   -webkit-user-drag: none;
   position: absolute;
-  top: 90%;
+  top: 89.5%;
   left: 40%;
   z-index: 100;
-  width: 40px;
+  width: 27px;
   height:auto;
   cursor:pointer;
   transition: transform 0.2s ease-in-out;
@@ -211,7 +211,7 @@ body {
   height: 0; /* Required for flex-grow to work properly in some scenarios */
   padding: 0 20px 20px 20px; 
   box-sizing: border-box;
-  color:#d8dac8;
+  color:#faffd1;
   white-space: pre-wrap;
   font-size: 22px;       /* Adjust the size */
   line-height: 1.6;      /* Adjust spacing between lines for better readability */
