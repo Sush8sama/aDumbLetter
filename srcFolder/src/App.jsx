@@ -186,10 +186,6 @@ function App() {
     setUnfolded(!unfolded);
   }
 
-    
-
-
-
   return (
   <>
     <div id="canvas-container">
