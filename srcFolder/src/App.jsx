@@ -21,6 +21,12 @@ const [frontTexture, backTexture, flapfront] = useTexture([
 const letterTextures = useTexture([
   '/Letter1.png',
   '/Letter2.png',
+  '/Letter3.png',
+  '/Letter4.png',
+  '/Letter5.png',
+  '/Letter6.png',
+  '/Letter7.png',
+  '/Letter8.png',
   ]);
 
 
@@ -151,7 +157,7 @@ const flapGeometry = useMemo(() => {
 
 function App() {
 
-  const pageCount = 2; 
+  const pageCount = 8; 
   const [isOpen, setIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [unfolded, setUnfolded] = useState(false);
@@ -197,28 +203,38 @@ function App() {
                 className='image-button'
                 alt="Open/Close Envelope"
                 />
+
+                {isOpen && (
                   <img
                   src="Right.png"
                   onClick={handleNextPage}
                   className='right-button'
                   alt="Next Page"
                   />
+
+                  )}
+                {isOpen && (
                   <img
                   src="Left.png"
                   onClick={handlePrevPage}
                   className='left-button'
                   alt="Prev Page"
                   />
+                  )}
                   
               
     </div>
-    
+    {isOpen && (
+    <div className="page-count">
+      <h2>{currentPage + 1} / {pageCount}</h2>
+    </div>
+  )}
     <Canvas >
         <Suspense fallback={null}>
         <ambientLight intensity={0.7} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
         
-        <AnimatedEnvelope isOpen={isOpen} currentPage={currentPage}/>
+        <AnimatedEnvelope isOpen={isOpen} currentPage={currentPage} />
         </Suspense>
       </Canvas>
     

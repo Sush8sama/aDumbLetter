@@ -34,6 +34,14 @@ Logs function is fully implemented. Not verry happy with the logs sprite and the
 
 @ 19:51 Sep 7th 2025
 
-Tweeked the font and sprite. Good enough. Next is to program the letter writing function. Currently it is still very manual. This means adding back end stuff ayayaya. Worries for tomorrow perhaps.
+Tweeked the font and sprite. Good enough. Next is to program the letter writing function. Currently it is still very manual. This means adding back end stuff ayayaya. Worries for tomorrow perhaps. Also should redraw some of the button sprites...
+
+############################
+
+@ 12:38 Oct 5th 2025
+
+Soo after a long hiatus from this project its time to finish this prototype AAAA! Currently trying to deploy this shit on Oracle cloud VM. NGL is taking longer than I thought LMAO. Why is not just cloning and running T_TTTT. I have like an hour left before I have to leave PLS LET ME FINISH THIS IN TIME!
+
+Also yeah some stuff definatly not very happy about... need to fix the page turning buttons and pagecount but yahhh for future version will do. AND ONE DAY I will complete this website project surely.
 
 ############################

@@ -29,15 +29,16 @@ def write_letter(text_path, image_path, font_path, font_size, position, text_col
     wrapped_text = '\n'.join(wrapped_paragraphs)
     draw.multiline_text(position,wrapped_text, font=font, fill=text_color)
     image.show()
+    image.save("Letter8.png")
     return image
 
 if __name__ == "__main__":
 
     write_letter(
-        text_path='./public/letter.txt',
+        text_path='./Print/To Danielle.txt',
         image_path ='./Print/Letter.png',
-        font_path='./Print/VCR_OSD_MONO_1.001.ttf',
-        font_size=20,
+        font_path='./public/Fonts/VCR_OSD_MONO_1.001.ttf',
+        font_size=30,
         position=(20, 20),
         text_color="black"
     )

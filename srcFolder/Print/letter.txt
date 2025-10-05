@@ -1,8 +1,17 @@
-YAYA
+Dear player,
 
+Tech-Tac-toe, a game familiar to many. Here you play against a friend, an AI, or yourself! 
 
+Clicking the board will start the game. You can play against a CAT ROBOT, an EXPERT AI or play against yourself or a friend in VERSUS MODE! Are you bored while waiting for the AI to think about its next move? Try playing around with the baord :D
 
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaM
-But fret not there are many out there that are of old age just like you. I must say that it is hard for me to symphasize with you now as I do now understand
-how it feels to be OLD. And in your case, it must be even harder due to an underdeveloped frontal cortex. However, please know that I stand with you through
-these hard times. I support your decisions so please don't be afraid to take some time to process your oldness.
+When the game is finished, or when you want to start over, simply press RESET. 
+
+DISCLAIMER: You cannot press RESET when the AI is still thinking, interupting him is rude!
+
+Hope you like my take and implementation of the game. And there is a single type of strategy that will almost always work against the expert AI, can you beat him?
+
+HAVE FUN~!
+
+Sincerely,
+
+Hans
