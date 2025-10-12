@@ -10,23 +10,26 @@ import { createPortal } from 'react-dom';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css'; 
 
+
 function AnimatedEnvelope({isOpen, currentPage}) {
 const envelopeRef = useRef();
 const flapRef = useRef();
+
 const [frontTexture, backTexture, flapfront] = useTexture([
-  '/FrontLetterWO.png', 
-  '/BackLetter.png', 
-  'FrontFlapOut.png', 
+  '/textures/FrontLetterWO.png', 
+  '/textures/BackLetter.png', 
+  '/textures/FrontFlapOut.png', 
   ]);
+
 const letterTextures = useTexture([
-  '/Letter1.png',
-  '/Letter2.png',
-  '/Letter3.png',
-  '/Letter4.png',
-  '/Letter5.png',
-  '/Letter6.png',
-  '/Letter7.png',
-  '/Letter8.png',
+  '/textures/Letter1.png',
+  '/textures/Letter2.png',
+  '/textures/Letter3.png',
+  '/textures/Letter4.png',
+  '/textures/Letter5.png',
+  '/textures/Letter6.png',
+  '/textures/Letter7.png',
+  '/textures/Letter8.png',
   ]);
 
 
@@ -76,6 +79,7 @@ const materials = [
 const envelopeWidth = 4.5;
 const envelopeHeight = 3;
 const envelopeDepth = 0.01;
+
 const {position: letterPosition, opacity: letterOpacity} = useSpring({
   position: isOpen ? [0, 1, 1] : [0, 0, 0.005],
   opacity: isOpen ? 1 : 0,
@@ -124,7 +128,6 @@ const flapGeometry = useMemo(() => {
     </mesh>
 
     <animated.group
-    
     position={[0, envelopeHeight / 2, envelopeDepth / 2 + 0.005]} // Position at the top edge of the envelope
     rotation = {flapRotation }
     >
@@ -198,7 +201,7 @@ function App() {
       
         <div className="button-container">
                 <img
-                src={isOpen ? "/Close.png" : "/Open.png"}
+                src={isOpen ? "/textures/Close.png" : "/textures/Open.png"}
                 onClick={() => setIsOpen(!isOpen)}
                 className='image-button'
                 alt="Open/Close Envelope"
@@ -206,7 +209,7 @@ function App() {
 
                 {isOpen && (
                   <img
-                  src="Right.png"
+                  src="/textures/Right.png"
                   onClick={handleNextPage}
                   className='right-button'
                   alt="Next Page"
@@ -215,7 +218,7 @@ function App() {
                   )}
                 {isOpen && (
                   <img
-                  src="Left.png"
+                  src="/textures/Left.png"
                   onClick={handlePrevPage}
                   className='left-button'
                   alt="Prev Page"
@@ -243,12 +246,12 @@ function App() {
     <div className={`sidetab ${unfolded ? 'open' : ''}`}>
 
         <img
-        src="logButton.png"
+        src="/textures/logButton.png"
         onClick={toggleSidetab}
         className='log-button'
         />
         <img 
-        src="/Logs.png" 
+        src="/textures/Logs.png" 
         className="logs-background" />
 
         <div className="sidetab-header">  {/* Added a header and footer to manage the scroll window size XD */}
