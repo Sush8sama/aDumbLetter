@@ -1,5 +1,7 @@
 
 import { useTexture } from '@react-three/drei';
+import { useMemo } from 'react';
+import * as THREE from 'three';
 import { useSpring, animated } from '@react-spring/three';
 import type { Texture } from 'three';
 
@@ -15,8 +17,8 @@ type EnvelopeLetterProps = {
     envelopeHeight: number,
     openPosition?: [number, number, number],
     closedPosition?: [number, number, number],
-    openOpacity?: number,
-    closedOpacity?: number,
+    openOpacity?: number,                           
+    closedOpacity?: number,                         
     openDelay?: number,
     friction?: number,
     mass?: number,
@@ -34,14 +36,22 @@ export default function EnvelopeLetter({
     envelopeHeight,
     openPosition = [0, 1, 1],
     closedPosition = [0, 0, 0.005],
-    openOpacity = 1,
-    closedOpacity = 0,
-    openDelay = 200,
+    openOpacity = 1,               // Opacity of the letter when the envelope is open
+    closedOpacity = 0,             // Opacity of the letter when the envelope is closed 
+    openDelay = 200,               // Delay before the letter fades in when the envelope is opened
     friction = 10,
     mass = 1,
     tension = 50,}: EnvelopeLetterProps ) {
     
     const letterTextures = useTexture(letterPathArray) as Texture[];
+
+    // Ensure textures are in sRGB color space for correct color representation
+    useMemo(() => {
+        letterTextures.forEach(texture => {
+          texture.colorSpace = THREE.SRGBColorSpace;
+          texture.needsUpdate = true;
+        });
+      }, [letterTextures]);
  
 
     const spring = useSpring <{ position: [number, number, number]; opacity: number}> ({
