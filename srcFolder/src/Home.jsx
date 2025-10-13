@@ -1,11 +1,88 @@
 import React from 'react';
 
 export default function Home({ onStart }) {
+  const containerRef = React.useRef(null);
+  const [positionStyle, setPositionStyle] = React.useState({ left: 0, top: 0, width: undefined, height: undefined });
+
+  React.useEffect(() => {
+    const containerEl = containerRef.current;
+    if (!containerEl) return;
+
+    const bgImg = new Image();
+    bgImg.src = '/textures/HomeBackground.png';
+
+    const overlayImg = new Image();
+    overlayImg.src = '/textures/SelectedStack.png';
+
+    function updatePosition() {
+      if (!containerRef.current || !bgImg.naturalWidth || !bgImg.naturalHeight) return;
+      const containerWidth = containerRef.current.clientWidth;
+      const containerHeight = containerRef.current.clientHeight;
+
+      const scale = Math.max(
+        containerWidth / bgImg.naturalWidth,
+        containerHeight / bgImg.naturalHeight
+      );
+
+      const renderedWidth = bgImg.naturalWidth * scale;
+      const renderedHeight = bgImg.naturalHeight * scale;
+
+      const offsetX = (containerWidth - renderedWidth) / 2;
+      const offsetY = (containerHeight - renderedHeight) / 2;
+
+      const anchorX = 228;
+      const anchorY = 198;
+
+      const left = Math.round(offsetX + anchorX * scale);
+      const top = Math.round(offsetY + anchorY * scale);
+
+      let width;
+      let height;
+      if (overlayImg.naturalWidth && overlayImg.naturalHeight) {
+        const overlayScaleFactor = 0.23;
+        width = Math.round(overlayImg.naturalWidth * scale * overlayScaleFactor);
+        height = Math.round(overlayImg.naturalHeight * scale * overlayScaleFactor);
+      }
+
+      setPositionStyle({ left, top, width, height });
+    }
+
+    const onLoadAndResize = () => updatePosition();
+    bgImg.onload = onLoadAndResize;
+    overlayImg.onload = onLoadAndResize;
+
+    updatePosition();
+    window.addEventListener('resize', onLoadAndResize);
+    return () => {
+      window.removeEventListener('resize', onLoadAndResize);
+    };
+  }, []);
+
   return (
-    <div className="home">
-      <div className="home-content">
-        <h1 className="home-title">dumb letter</h1>
-        <button className="home-open" onClick={onStart}>see envelope</button>
+    <div ref={containerRef} className="home">
+      <div
+        className="selected-stack-wrap"
+        style={{
+          position: 'absolute',
+          left: positionStyle.left,
+          top: positionStyle.top,
+          width: positionStyle.width,
+          height: positionStyle.height,
+          zIndex: 50,
+          cursor: 'pointer'
+        }}
+        onClick={onStart}
+      >
+        <img
+          className="selected-stack"
+          src="/textures/SelectedStack.png"
+          alt="Selected Stack"
+          style={{
+            width: '100%',
+            height: '100%'
+          }}
+        />
+        <div className="selected-stack-label">view letters</div>
       </div>
     </div>
   );

@@ -266,6 +266,10 @@ body {
   height: 100vh;
   width: 100vw;
   background-color: rgb(138, 110, 92);
+  background-image: url('/textures/HomeBackground.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .home-content {
@@ -296,4 +300,38 @@ body {
 
 .home-open:active {
   transform: scale(0.98);
+}
+
+/* hover-only overlay anchored to background: only when hovering the image itself */
+.home .selected-stack {
+  opacity: 0;
+}
+
+.home .selected-stack:hover {
+  opacity: 1;
+}
+
+/* wrapper hover should also reveal image and label */
+.home .selected-stack-wrap:hover .selected-stack {
+  opacity: 1;
+}
+.home .selected-stack-wrap {
+  position: absolute;
+}
+.home .selected-stack-label {
+  font-family: 'PixelFont5', monospace;
+  color: #ffffff;
+  font-size: 30px;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.25);
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translate(-50%, -8px);
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.home .selected-stack-wrap:hover .selected-stack-label {
+  opacity: 1;
+  transform: translate(-50%, -2px);
 }
