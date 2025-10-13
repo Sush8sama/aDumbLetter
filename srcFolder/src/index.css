@@ -60,7 +60,7 @@ body {
   z-index: 10;
 
   pointer-events: none;
-  
+
 }
 
 .image-button, .right-button, .left-button, .close-btn, .open-btn {
@@ -71,7 +71,7 @@ body {
 .image-button {
   user-select: none;
 
-  -webkit-user-drag: none; 
+  -webkit-user-drag: none;
   position: absolute;
   top: 90%;
   left: 50%;
@@ -84,11 +84,11 @@ body {
 }
 .image-button:hover {
   transform: translateX(-50%) scale(1.1);
-} 
+}
 
 .image-button:active {
   transform: translateX(-50%) scale(0.95);
-  transition: transform 0.1s ease-in-out  
+  transition: transform 0.1s ease-in-out
   }
 
 .right-button {
@@ -135,7 +135,7 @@ body {
   top: 7%;
   right: -450px; /* Initially hidden off-screen to the right */
   background-color: #66252500;
-  
+
   transition: 0.5s; /* The duration of the slide animation */
   padding-top: 60px;
 
@@ -169,8 +169,6 @@ body {
 }
 
 .sidetab .close-btn {
-  
-
   font-size: 36px;
   background: none; /* Make background transparent */
   border: none;
@@ -209,14 +207,13 @@ body {
   -webkit-user-drag: none;
   flex-grow: 1; /* This is the key! It makes the content fill the remaining space */
   height: 0; /* Required for flex-grow to work properly in some scenarios */
-  padding: 0 20px 20px 20px; 
+  padding: 0 20px 20px 20px;
   box-sizing: border-box;
   color:#faffd1;
   white-space: pre-wrap;
   font-size: 22px;       /* Adjust the size */
   line-height: 1.6;      /* Adjust spacing between lines for better readability */
-  text-align: left; 
-  
+  text-align: left;
 }
 
 .simplebar-content-wrapper{
@@ -224,7 +221,6 @@ body {
 }
 
 .log-button{
-  
   user-select: none;
   -webkit-user-drag: none;
   position: absolute;
@@ -260,4 +256,44 @@ body {
   transform: translate(50%, 0);
   font-size: 18px;
   z-index: 100; /* Ensure it's above other elements */
+}
+
+/* homepage */
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(138, 110, 92);
+}
+
+.home-content {
+  text-align: center;
+}
+
+.home-title {
+  font-family: 'PixelFont5', monospace;
+  color: #faffd1;
+  font-size: 48px;
+  margin-bottom: 24px;
+}
+
+.home-open {
+  font-family: 'PixelFont5', monospace;
+  font-size: 20px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  background-color: #734b3e;
+  color: #fff;
+  cursor: pointer;
+}
+
+.home-open:hover {
+  filter: brightness(1.1);
+}
+
+.home-open:active {
+  transform: scale(0.98);
 }
