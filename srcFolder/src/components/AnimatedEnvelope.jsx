@@ -78,3 +78,5 @@ function AnimatedEnvelope({
         </animated.group>
     );    
 }
+
+export default AnimatedEnvelope;
