@@ -7,4 +7,8 @@ export default defineConfig({
     react(),
     Checker({ typescript: true }), // Could add ESLint here later if wanted.
   ],
+  server: {
+    port: 5173,
+    host: 'localhost'
+  }
 })

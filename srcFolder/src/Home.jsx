@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Home({ onStart }) {
+export default function Home({ onStart, onLogout, user }) {
   const containerRef = React.useRef(null);
   const [positionStyle, setPositionStyle] = React.useState({ left: 0, top: 0, width: undefined, height: undefined });
 
@@ -60,6 +60,19 @@ export default function Home({ onStart }) {
 
   return (
     <div ref={containerRef} className="home">
+      {/* User info and logout button */}
+      {user && (
+        <div className="user-info-bar">
+          <div className="user-info">
+            <img src={user.picture} alt={user.name} className="user-avatar" />
+            <span className="user-name">Welcome, {user.name}</span>
+          </div>
+          <button onClick={onLogout} className="logout-button">
+            Logout
+          </button>
+        </div>
+      )}
+
       <div
         className="selected-stack-wrap"
         style={{
