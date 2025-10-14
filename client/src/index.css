@@ -36,11 +36,11 @@
   font-style: normal;
 }
 
+/* ---- EnvelopePage ---- */
 
 body {
   margin: 0;
 }
-
 
 #canvas-container {
   user-select: none;
@@ -261,3 +261,5 @@ body {
   font-size: 18px;
   z-index: 100; /* Ensure it's above other elements */
 }
+
+/* ---- LetterWriterPage ---- */

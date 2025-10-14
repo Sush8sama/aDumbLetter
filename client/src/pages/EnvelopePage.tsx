@@ -1,10 +1,10 @@
 
 import {Suspense, useState} from 'react';
 import {Canvas} from '@react-three/fiber';
-import AnimatedEnvelope from './AnimatedEnvelope';
+import AnimatedEnvelope from '../components/AnimatedEnvelope';
 
 
-type EnvelopeCanvasProps = {
+type EnvelopePageProps = {
     frontTexturePath: string,
     backTexturePath: string,
     flapTexturePath: string,
@@ -15,12 +15,12 @@ type EnvelopeCanvasProps = {
  * Given textures it will display an interactable and animated envelope with its contents.
  * [TBA] Could make the background change or other customazations later.
  */
-export default function EnvelopeCanvas({
+export default function EnvelopePage({
     frontTexturePath,
     backTexturePath,
     flapTexturePath,
     letterPathArray,
-}: EnvelopeCanvasProps){
+}: EnvelopePageProps){
 
     const [isOpen, setIsOpen] = useState(false);           // Envelope open and close state
     const [currentPage, setCurrentPage] = useState(0);     // Current page of the letter being viewed
