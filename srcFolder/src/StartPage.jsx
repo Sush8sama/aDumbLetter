@@ -1,5 +1,5 @@
 import React from 'react';
-import GoogleAuth from './components/GoogleAuth';
+import SupabaseAuth from './components/SupabaseAuth';
 
 const StartPage = ({ onLoginSuccess }) => {
   return (
@@ -13,7 +13,7 @@ const StartPage = ({ onLoginSuccess }) => {
         </div>
 
         <div className="auth-section">
-          <GoogleAuth onLoginSuccess={onLoginSuccess} />
+          <SupabaseAuth onLoginSuccess={onLoginSuccess} />
         </div>
       </div>
     </div>

@@ -64,8 +64,14 @@ export default function Home({ onStart, onLogout, user }) {
       {user && (
         <div className="user-info-bar">
           <div className="user-info">
-            <img src={user.picture} alt={user.name} className="user-avatar" />
-            <span className="user-name">Welcome, {user.name}</span>
+            <img
+              src={user.user_metadata?.avatar_url || user.user_metadata?.picture || '/default-avatar.png'}
+              alt={user.user_metadata?.full_name || user.user_metadata?.name || user.email}
+              className="user-avatar"
+            />
+            <span className="user-name">
+              Welcome, {user.user_metadata?.full_name || user.user_metadata?.name || user.email}
+            </span>
           </div>
           <button onClick={onLogout} className="logout-button">
             Logout
