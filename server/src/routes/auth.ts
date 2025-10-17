@@ -11,7 +11,7 @@ const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 /**
  *  OAuth login: redirects to provider login page and then back to /auth/callback
  */
-router.post('/login', async (req, res) => {
+router.get('/login', async (req, res) => {
     const provider = (req.query.provider as string) || 'google';
     try {
         const { data, error} = await supabaseAdmin.auth.signInWithOAuth({
@@ -22,11 +22,12 @@ router.post('/login', async (req, res) => {
         });
         if (error){
         console.error('Supabase OAuth error:', error);
+        // TODO add error page in frontend
         return res.status(500).json({ error: 'OAuth sign-in failed' });
         }
         const redirectUrl = data?.url;
         if (!redirectUrl) return res.status(500).json({ error: 'No redirect URL from Supabase' });
-        return res.json({ url: redirectUrl });
+        return res.redirect(redirectUrl);
     }
     catch (err) {
         console.error('Login error:', err);
@@ -70,7 +71,7 @@ router.get('/callback', async (req, res) => {
         });
         // TODO Optionally: store session server-side (DB) to support revocation or rotation.
 
-        return res.redirect(`${FRONTEND_URL}/auth/success`); // TODO: Redirect to frontend success page
+        return res.redirect(`${FRONTEND_URL}/`); 
      } catch (err) {
         console.error('Auth callback error:', err);
         return res.redirect(`${FRONTEND_URL}/auth/error?auth=failed`); // TODO: improve error handling

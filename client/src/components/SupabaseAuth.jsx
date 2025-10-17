@@ -8,7 +8,7 @@ const SupabaseAuth = ({ onLoginSuccess }) => {
   React.useEffect(() => {
     if (isAuthenticated && user && onLoginSuccess) {
       const userData = {
-        name: user.user_metadata?.full_name || user.user_metadata?.name || user.email,
+        id: user.user_metadata?.full_name || user.user_metadata?.name || user.email,
         email: user.email,
         picture: user.user_metadata?.avatar_url || user.user_metadata?.picture
       }

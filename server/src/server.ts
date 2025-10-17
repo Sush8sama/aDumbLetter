@@ -1,13 +1,13 @@
+import dotenv from 'dotenv';
+dotenv.config();            // Load env vars from .env file
 import express, { Express} from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import dotenv from 'dotenv';
 import authRoutes from './routes/auth';
 import letterRoutes from './routes/letters';
 /**
  * An Express server to Handle the backend.
  */
-dotenv.config();            // Load env vars from .env file
 const app: Express = express();
 const port = Number(process.env.PORT || 3001);
 

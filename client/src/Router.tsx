@@ -1,10 +1,9 @@
-import '../index.css'
+import './index.css'
 import App from './App.jsx'
 import Home from './Home.jsx'
 import StartPage from './pages/StartPage.jsx'
-import AuthCallback from './auth/callback.jsx'
 import { useAuth } from './contexts/AuthContext.js'
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import {User} from './types/AuthTypes.js'
 
 const safeWindowPath = (): string => {
