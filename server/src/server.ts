@@ -1,39 +1,26 @@
-import express, { Express, Request, Response } from 'express';
-import fs from 'fs';
-import path from 'path';
+import express, { Express} from 'express';
 import cors from 'cors';
-import SaveLetterBody from './types';
-
+import cookieParser from 'cookie-parser';
+import dotenv from 'dotenv';
+import authRoutes from './routes/auth';
+import letterRoutes from './routes/letters';
 /**
  * An Express server to Handle the backend.
  */
+dotenv.config();            // Load env vars from .env file
 const app: Express = express();
-const port: number = 3001;
-app.use(cors());            // Enable CORS for all routes
+const port = Number(process.env.PORT || 3001);
+
+app.use(cors({
+    origin: process.env.FRONTEND_URL || true,
+    credentials: true
+}));
 app.use(express.json());    // Middleware to parse JSON request bodies
+app.use(cookieParser());
 
 
-/**
- * Endpoint to save the letter text to a file.
- */
-app.post('/save-letter', (req: Request, res: Response) => {
-    // Type assertion for the request body
-    const { text } = req.body as SaveLetterBody;
-    
-    // Due to lack of database uses a simple text file to store the letter
-    // e.g., /my-project/server and /my-project/client
-    const filePath = path.join('src','db', 'letter.txt'); 
-
-    fs.writeFile(filePath, text, (err: NodeJS.ErrnoException | null) => {
-        if (err) {
-            console.error('Failed to save letter:', err);
-            return res.status(500).send('Failed to save the letter.');
-        }
-        res.send('Letter saved successfully.');
-    });
-});
-
-
+app.use('/auth', authRoutes);
+app.use('/letters', letterRoutes);
 
 /**
  * Start the server.
