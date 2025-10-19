@@ -71,7 +71,7 @@ router.get('/callback', async (req, res) => {
         });
         // TODO Optionally: store session server-side (DB) to support revocation or rotation.
 
-        return res.redirect(`${FRONTEND_URL}/`); 
+        return res.redirect(`${FRONTEND_URL}/`);
      } catch (err) {
         console.error('Auth callback error:', err);
         return res.redirect(`${FRONTEND_URL}/auth/error?auth=failed`); // TODO: improve error handling

@@ -93,7 +93,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           'Accept': 'application/json'
         }
       });
-      
+
       if (!res.ok) {
         const body = await res.json().catch(() => ({ error: 'Logout failed' }));
         throw new Error(body?.error ?? 'Logout failed');

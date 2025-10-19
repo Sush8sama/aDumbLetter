@@ -1,4 +1,4 @@
-import { useAuth as useAuthContext } from '../contexts/AuthContext.jsx'
+import { useAuth as useAuthContext } from '../contexts/AuthContext'
 
 /**
  * Custom hook for authentication operations

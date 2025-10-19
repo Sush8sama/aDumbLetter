@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { AuthProvider } from './contexts/AuthContext.js'
+import { AuthProvider } from './contexts/AuthContext'
 import Router from './Router'
 
 // Get the root element

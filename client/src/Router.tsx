@@ -2,7 +2,7 @@ import './index.css'
 import App from './App.jsx'
 import Home from './Home.jsx'
 import StartPage from './pages/StartPage.jsx'
-import { useAuth } from './contexts/AuthContext.js'
+import { useAuth } from './contexts/AuthContext'
 import React, { useState, useEffect } from 'react';
 import {User} from './types/AuthTypes.js'
 

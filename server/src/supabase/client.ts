@@ -13,5 +13,9 @@ if (!SUPABASE_URL || !SUPABASE_KEY) {
 
 // ???
 export const supabaseAdmin = createClient(SUPABASE_URL, SUPABASE_KEY, {
-  auth: { autoRefreshToken: false, persistSession: false }
+  auth: {
+    autoRefreshToken: false,
+    persistSession: false,
+    flowType: 'pkce'
+  }
 });
