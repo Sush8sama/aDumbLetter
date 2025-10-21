@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import axios from 'axios';
 
 export default function LetterWriterPage() {
     const [text, setText] = useState('');
@@ -11,8 +10,20 @@ export default function LetterWriterPage() {
 
     const handleSave = async () => {
         try {
-            const response = await axios.post('http://localhost:3001/save-letter', { text });
-            setMessage(response.data);
+            const response = await fetch('http://localhost:3001/save-letter', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({ text }),
+            credentials: 'same-origin', // can set to 'include' if needed
+        });
+            if (!response.ok) {
+                throw new Error('saving letter failed, status: ' + response.status);
+            }
+            const data = await response.json();
+            setMessage(data);
         } catch (error) {
             setMessage('Error saving the letter.');
             console.error('There was an error saving the letter:', error);

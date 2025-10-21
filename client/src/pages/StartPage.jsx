@@ -1,5 +1,5 @@
 import React from 'react';
-import SupabaseAuth from './components/SupabaseAuth';
+import SupabaseAuth from '../components/SupabaseAuth';
 
 const StartPage = ({ onLoginSuccess }) => {
   return (

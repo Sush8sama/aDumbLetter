@@ -1,1 +1,2 @@
-ssh-key-2025-10-05.key
+# Ignore all files in the secrets directory
+secrets/
