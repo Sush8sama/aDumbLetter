@@ -1,10 +1,10 @@
 import React from 'react';
 import SupabaseAuth from '../components/SupabaseAuth';
 
-const StartPage = ({ onLoginSuccess }) => {
+const LoginPage = () => {
   return (
-    <div className="start-page">
-      <div className="start-page-content">
+    <div className="login-page">
+      <div className="login-page-content">
         <div className="welcome-section">
           <h1 className="app-title">aDumbLetter</h1>
           <p className="welcome-text">
@@ -13,11 +13,11 @@ const StartPage = ({ onLoginSuccess }) => {
         </div>
 
         <div className="auth-section">
-          <SupabaseAuth onLoginSuccess={onLoginSuccess} />
+          <SupabaseAuth />
         </div>
       </div>
     </div>
   );
 };
 
-export default StartPage;
+export default LoginPage;

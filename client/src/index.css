@@ -371,7 +371,7 @@ body {
 }
 
 /* Start Page Styles */
-.start-page {
+.login-page {
   width: 100vw;
   height: 100vh;
   background: linear-gradient(135deg, #786759 0%, #382e25 100%);
@@ -381,7 +381,7 @@ body {
   font-family: 'PixelFont5', monospace;
 }
 
-.start-page-content {
+.login-page-content {
   text-align: center;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);

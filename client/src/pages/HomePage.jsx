@@ -1,10 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function Home({ onViewLetters, onWriteLetter, onLogout, user }) {
+export default function HomePage({ onLogout, user }) {
   const containerRef = React.useRef(null);
   const [positionStyle, setPositionStyle] = React.useState({ left: 0, top: 0, width: undefined, height: undefined });
   const [blankPaperPositionStyle, setBlankPaperPositionStyle] = React.useState({ left: 0, top: 0, width: undefined, height: undefined });
-
+  const navigate = useNavigate();
   React.useEffect(() => {
     const containerEl = containerRef.current;
     if (!containerEl) return;
@@ -112,7 +113,7 @@ export default function Home({ onViewLetters, onWriteLetter, onLogout, user }) {
           zIndex: 50,
           cursor: 'pointer'
         }}
-        onClick={onViewLetters}
+        onClick={() => navigate('/view/dumb-letter')}
       >
         <img
           className="selected-stack"
@@ -137,7 +138,7 @@ export default function Home({ onViewLetters, onWriteLetter, onLogout, user }) {
           zIndex: 50,
           cursor: 'pointer'
         }}
-        onClick={onWriteLetter}
+        onClick={() => navigate('/write/letter')}
       >
         <img
           className="selected-blank-paper"

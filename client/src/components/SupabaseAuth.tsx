@@ -1,39 +1,38 @@
 import React from 'react'
 import { useAuth } from '../hooks/useAuth.js'
 
-const SupabaseAuth = ({ onLoginSuccess }) => {
-  const { user, loading, error, signInWithGoogle, signOut, isAuthenticated } = useAuth()
+const SupabaseAuth = () => {
+  const { user, loading, error, signInWithGoogle, signOut, isAuthenticated } = useAuth();
 
   // Call onLoginSuccess when user becomes authenticated
   React.useEffect(() => {
-    if (isAuthenticated && user && onLoginSuccess) {
+    if (isAuthenticated && user) {
       const userData = {
         id: user.user_metadata?.full_name || user.user_metadata?.name || user.email,
         email: user.email,
         picture: user.user_metadata?.avatar_url || user.user_metadata?.picture
-      }
-      onLoginSuccess(userData)
+      };
     }
-  }, [isAuthenticated, user, onLoginSuccess])
+  }, [isAuthenticated, user])
 
   const handleLogin = async () => {
     try {
-      await signInWithGoogle()
+      await signInWithGoogle();
     } catch (err) {
-      console.error('Login error:', err)
+      console.error('Login error:', err);
     }
   }
 
   const handleLogout = async () => {
     try {
-      await signOut()
+      await signOut();
     } catch (err) {
-      console.error('Logout error:', err)
+      console.error('Logout error:', err);
     }
   }
 
   if (loading) {
-    return <div className="google-auth-container">Loading authentication...</div>
+    return <div className="google-auth-container">Loading authentication...</div>;
   }
 
   return (
@@ -77,4 +76,4 @@ const SupabaseAuth = ({ onLoginSuccess }) => {
   )
 }
 
-export default SupabaseAuth
+export default SupabaseAuth;
