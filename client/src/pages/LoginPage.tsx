@@ -1,5 +1,6 @@
 import React from 'react';
 import SupabaseAuth from '../components/SupabaseAuth';
+import './LoginPage.css';
 
 const LoginPage = () => {
   return (
