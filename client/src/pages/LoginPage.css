@@ -1,0 +1,46 @@
+
+.login-page {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #786759 0%, #382e25 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'PixelFont5', monospace;
+}
+
+.login-page-content {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 60px 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 500px;
+  width: 90%;
+}
+
+.welcome-section {
+  margin-bottom: 40px;
+}
+
+.app-title {
+  font-size: 48px;
+  color: #ffffff;
+  margin: 0 0 20px 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-weight: bold;
+}
+
+.welcome-text {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  line-height: 1.6;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.auth-section {
+  margin-bottom: 30px;
+}

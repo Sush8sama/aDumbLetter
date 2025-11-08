@@ -1,5 +1,6 @@
 import React from 'react'
 import { useAuth } from '../hooks/useAuth.js'
+import './SupabaseAuth.css'
 
 const SupabaseAuth = () => {
   const { user, loading, error, signInWithGoogle, signOut, isAuthenticated } = useAuth();

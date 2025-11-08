@@ -1,0 +1,195 @@
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(138, 110, 92);
+  background-image: url('/textures/HomeBackground.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.home-content {
+  text-align: center;
+}
+
+.home-title {
+  font-family: 'PixelFont5', monospace;
+  color: #faffd1;
+  font-size: 48px;
+  margin-bottom: 24px;
+}
+
+.home-open {
+  font-family: 'PixelFont5', monospace;
+  font-size: 20px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  background-color: #734b3e;
+  color: #fff;
+  cursor: pointer;
+}
+
+.home-open:hover {
+  filter: brightness(1.1);
+}
+
+.home-open:active {
+  transform: scale(0.98);
+}
+
+/* hover-only overlay anchored to background: only when hovering the image itself */
+.home .selected-stack {
+  opacity: 0;
+}
+
+.home .selected-stack:hover {
+  opacity: 1;
+}
+
+/* wrapper hover should also reveal image and label */
+.home .selected-stack-wrap:hover .selected-stack {
+  opacity: 1;
+}
+.home .selected-stack-wrap {
+  position: absolute;
+}
+.home .selected-stack-label {
+  font-family: 'PixelFont5', monospace;
+  color: #ffffff;
+  font-size: 30px;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.25);
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translate(-50%, -8px);
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.home .selected-stack-wrap:hover .selected-stack-label {
+  opacity: 1;
+  transform: translate(-50%, -2px);
+}
+
+/* Blank paper label styling - matching selected-stack-label */
+.home .selected-blank-paper {
+  opacity: 0;
+}
+
+.home .selected-blank-paper:hover {
+  opacity: 1;
+}
+
+/* wrapper hover should also reveal image and label */
+.home .selected-blank-paper-wrap:hover .selected-blank-paper {
+  opacity: 1;
+}
+.home .selected-blank-paper-wrap {
+  position: absolute;
+}
+.home .selected-blank-paper-label {
+  font-family: 'PixelFont5', monospace;
+  color: #ffffff;
+  font-size: 30px;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.25);
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translate(-50%, -8px);
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.home .selected-blank-paper-wrap:hover .selected-blank-paper-label {
+  opacity: 1;
+  transform: translate(-50%, -2px);
+}
+
+
+.selected-shelf{
+    opacity: 0;
+}
+
+.selected-shelf:hover{
+    opacity: 1;
+}
+
+.selected-shelf-label {
+  font-family: 'PixelFont5', monospace;
+  color: #ffffff;
+  font-size: 30px;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.25);
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translate(-50%, -8px);
+  opacity: 0;
+  z-index: 10;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.selected-shelf-wrap:hover .selected-shelf-label {
+  opacity: 1;
+  transform: translate(-50%, -2px);
+}
+
+/* Home Page User Info Bar */
+.user-info-bar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 100;
+}
+
+.user-info-bar .user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  padding: 0;
+  border: none;
+}
+
+.user-info-bar .user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.user-info-bar .user-name {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'PixelFont5', monospace;
+}
+
+.user-info-bar .logout-button {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'PixelFont5', monospace;
+}
+
+.user-info-bar .logout-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+}

@@ -2,7 +2,7 @@
 import {Suspense, useState} from 'react';
 import {Canvas} from '@react-three/fiber';
 import AnimatedEnvelope from '../components/AnimatedEnvelope';
-
+import './EnvelopePage.css';
 
 type EnvelopePageProps = {
     frontTexturePath: string,

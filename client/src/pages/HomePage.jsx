@@ -1,10 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './HomePage.css';
 
 export default function HomePage({ onLogout, user }) {
   const containerRef = React.useRef(null);
   const [positionStyle, setPositionStyle] = React.useState({ left: 0, top: 0, width: undefined, height: undefined });
   const [blankPaperPositionStyle, setBlankPaperPositionStyle] = React.useState({ left: 0, top: 0, width: undefined, height: undefined });
+  const [shelfPositionStyle, setShelfPostionStyle] = React.useState({ left: 0, top: 0, width: undefined, height: undefined });
   const navigate = useNavigate();
   React.useEffect(() => {
     const containerEl = containerRef.current;
@@ -18,6 +20,9 @@ export default function HomePage({ onLogout, user }) {
 
     const blankPaperImg = new Image();
     blankPaperImg.src = '/textures/SelectedBlankPaper.png';
+
+    const shelfImg = new Image();
+    shelfImg.src = '/textures/SelectedShelf.png';
 
     function updatePosition() {
       if (!containerRef.current || !bgImg.naturalWidth || !bgImg.naturalHeight) return;
@@ -67,12 +72,31 @@ export default function HomePage({ onLogout, user }) {
       }
 
       setBlankPaperPositionStyle({ left: blankPaperLeft, top: blankPaperTop, width: blankPaperWidth, height: blankPaperHeight });
+
+    // position for shelf
+
+    const shelfAnchorX = 297;
+    const shelfAnchorY = 315;
+
+    const shelfLeft = Math.round(offsetX + shelfAnchorX * scale);
+    const shelfTop = Math.round(offsetY + shelfAnchorY * scale);
+
+    let shelfWidth;
+    let shelfHeight;
+    if (shelfImg.naturalWidth && shelfImg.naturalHeight) {
+      const shelfScaleFactor = 1.0;
+      shelfWidth = Math.round(shelfImg.naturalWidth * scale * shelfScaleFactor);
+      shelfHeight = Math.round(shelfImg.naturalHeight * scale * shelfScaleFactor);
     }
+
+    setShelfPostionStyle({ left: shelfLeft, top: shelfTop, width: shelfWidth, height: shelfHeight });
+  }
 
     const onLoadAndResize = () => updatePosition();
     bgImg.onload = onLoadAndResize;
     overlayImg.onload = onLoadAndResize;
     blankPaperImg.onload = onLoadAndResize;
+    shelfImg.onload = onLoadAndResize;
 
     updatePosition();
     window.addEventListener('resize', onLoadAndResize);
@@ -150,6 +174,31 @@ export default function HomePage({ onLogout, user }) {
           }}
         />
         <div className="selected-blank-paper-label">write letter</div>
+      </div>
+
+      <div
+        className="selected-shelf-wrap"
+        style={{
+          position: 'absolute',
+          left: shelfPositionStyle.left,
+          top: shelfPositionStyle.top,
+          width: shelfPositionStyle.width,
+          height: shelfPositionStyle.height,
+          zIndex: 50,
+          cursor: 'pointer'
+        }}
+        onClick={() => navigate('/view/dumb-letter')}
+      >
+        <img
+          className="selected-shelf"
+          src="/textures/SelectedShelf.png"
+          alt="Selected shelf"
+          style={{
+            width: '100%',
+            height: '100%'
+          }}
+        />
+        <div className="selected-shelf-label">view letters</div>
       </div>
     </div>
   );
