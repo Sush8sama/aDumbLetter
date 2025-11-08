@@ -1,6 +1,7 @@
 import express from 'express';
 import { requireAuth } from '../middleware/requireAuth';
 import { supabaseAdmin } from '../supabase/client';
+import { Console } from 'console';
 
 // router responsible for letter-related endpoints
 const router = express.Router();
@@ -9,14 +10,17 @@ const router = express.Router();
  * Endpoint to save the letter text to a file. (temp)
  */
 router.post('/save', requireAuth, async (req, res) => {
+  
+
   const { content, title, user } = req.body;
+  
   if (typeof content !== 'string') return res.status(400).json({ error: 'Invalid text' });
 
 
   try {
     const {data, error} = await supabaseAdmin
-      .from('letters_content')
-      .insert([{ content: content, title: title, user_id: user.id }])
+      .from('letter_content')
+      .insert([{ content: content, title: title, user_id: user.user.id }])
       .select();
     
     if (error) {

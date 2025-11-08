@@ -1,0 +1,98 @@
+/* LetterWriterPage Styles */
+
+#letter-writer-page {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(192, 172, 147);
+  /* background-image: url('/textures/LetterWriterBackground.png'); */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 40px;
+  box-sizing: border-box;
+  position: relative;
+  pointer-events: none;
+  user-select: none;
+}
+
+#letter-content-container {
+  font-family: 'PixelFont5', monospace;
+  position: relative;
+  width: 60%;
+  margin: 0 auto;
+  padding-bottom: 150px; /* Space for typewriter image */
+  user-select: none;
+}
+
+.title-bar {
+  font-family: 'PixelFont5', monospace;
+  font-size: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20%;
+  padding: 8px;
+  box-sizing: border-box;
+  margin-bottom: 12px;
+  position: absolute;
+  pointer-events: auto ;
+  user-select: none;
+}
+
+.typewriter {
+  left: 50%;
+  bottom: 0 ;
+  width: 75%;
+  transform: translateX(-50%);
+  position: absolute ;
+  height: 75%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.save-button {
+    font-family: pixelfont5, monospace;
+    font-size: 20px;
+    color: rgb(255, 227, 168);
+    position : absolute;
+    left: 63%;
+    top: 84%;
+    background-color: transparent;
+    width: 8%;
+    height: 3%;
+    pointer-events: auto;
+    z-index: 10;
+}
+
+.letter-content:focus {
+  outline: none;
+  box-shadow: none;
+}
+.message-area {
+    font-family: pixelfont5;
+    font-size: 24px;
+    color: rgb(25, 117, 17);
+    position : absolute;
+    left: 90%;
+    top: 5%;
+    transform: translateX(-50%);
+    width: 30%;
+    height: auto;
+    text-align: center;
+    pointer-events: none;
+    user-select: none;
+    z-index: 10;
+}
+
+.message-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* allow clicks through overlay (optional) */
+  display: flex;
+  align-items: flex-end; /* or center / flex-start */
+  justify-content: center;
+  padding: 20px;
+  z-index: 9999;
+}
