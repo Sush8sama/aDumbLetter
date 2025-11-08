@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { supabase } from '../lib/supabase/client.js'
 import {User, AuthContextType} from '../types/AuthTypes.js'
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);

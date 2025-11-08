@@ -1,23 +1,13 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { AuthProvider } from './contexts/AuthContext'
-import Router from './Router'
+import App from './App'
 
-// Get the root element
-const container = document.getElementById('root')!
+const container = document.getElementById('root');
+const root = createRoot(container!); // The '!' asserts that the container is not null
 
-// Create root only if it doesn't exist (for HMR compatibility)
-if (!(container as any)._reactRootContainer) {
-  const root = createRoot(container)
-  ;(container as any)._reactRootContainer = root
-}
-
-// Render the app
-;(container as any)._reactRootContainer.render(
+root.render(
   <StrictMode>
-    <AuthProvider>
-      <Router />
-    </AuthProvider>
+    <App />
   </StrictMode>
-)
+);
